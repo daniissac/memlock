@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemLock - Memorable & Secure Passwords</title>
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="icon.svg" alt="MemLock Logo" class="logo-img">
+                <h1>MemLock</h1>
+            </div>
+            <p class="tagline">Passwords you can remember, security you can trust</p>
+        </header>
+
+        <main>
+            <div class="generator-card">
+                <div class="password-display">
+                    <input type="text" id="passwordOutput" readonly>
+                    <button id="copyButton" title="Copy to clipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="options">
+                    <div class="option-group">
+                        <label for="passwordType">Password Type</label>
+                        <select id="passwordType">
+                            <option value="wordBased">Word-Based (Easier to Remember)</option>
+                            <option value="patternBased">Pattern-Based (More Secure)</option>
+                            <option value="passphrases">Passphrase (Most Memorable)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="passwordLength">Length</label>
+                        <div class="range-container">
+                            <input type="range" id="passwordLength" min="10" max="30" value="16">
+                            <span id="lengthValue">16</span>
+                        </div>
+                    </div>
+
+                    <div class="option-group checkboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="useNumbers" checked>
+                            <label for="useNumbers">Numbers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="useSymbols" checked>
+                            <label for="useSymbols">Symbols</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="useMixedCase" checked>
+                            <label for="useMixedCase">Mixed Case</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generateButton" class="generate-btn">Generate Password</button>
+            </div>
+
+            <div class="strength-meter">
+                <p>Password Strength:</p>
+                <div class="strength-bar">
+                    <div id="strengthIndicator"></div>
+                </div>
+                <p id="strengthText">Generate a password to see its strength</p>
+            </div>
+
+            <div class="recently-generated">
+                <h3>Recently Generated</h3>
+                <ul id="recentPasswords"></ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️| <a href="https://github.com/daniissac/memlock" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <div id="toast">Password copied to clipboard!</div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
