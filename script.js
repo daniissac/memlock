@@ -78,6 +78,44 @@ document.addEventListener('DOMContentLoaded', function() {
         addToRecentPasswords(password);
     }
 
+    function generateWordBasedPassword(length, includeNumbers, includeSymbols, includeMixedCase) {
+        let password = '';
+        while (password.length < length) {
+            let word = commonWords[Math.floor(Math.random() * commonWords.length)];
+            if (includeMixedCase) {
+                word = Math.random() > 0.5 ? word.toUpperCase() : word.toLowerCase();
+            }
+            password += word;
+        }
+        password = password.substring(0, length);
+        if (includeNumbers) password += Math.floor(Math.random() * 10);
+        if (includeSymbols) password += '!@#$%^&*'[Math.floor(Math.random() * 8)];
+        return password;
+    }
+
+    function generatePatternBasedPassword(length, includeNumbers, includeSymbols, includeMixedCase) {
+        const chars = 'abcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        const symbols = '!@#$%^&*';
+        let allChars = chars;
+        if (includeMixedCase) allChars += chars.toUpperCase();
+        if (includeNumbers) allChars += numbers;
+        if (includeSymbols) allChars += symbols;
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            password += allChars[Math.floor(Math.random() * allChars.length)];
+        }
+        return password;
+    }
+
+    function generatePassphrase(length) {
+        let words = [];
+        for (let i = 0; i < Math.floor(length / 5); i++) {
+            words.push(commonWords[Math.floor(Math.random() * commonWords.length)]);
+        }
+        return words.join('-');
+    }
+
     function ratePasswordStrength(password) {
         if (!strengthIndicator || !strengthText) return;
 
