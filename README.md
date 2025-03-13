@@ -4,7 +4,7 @@ MemLock is a simple, lightweight web application that generates passwords that a
 
 ## 🔐 [Try MemLock](https://daniissac.com/memlock)
 
-![MemLock Icon](icon.svg)
+<img src="icon.svg" width="150" height="150" />
 
 ## Features
 
